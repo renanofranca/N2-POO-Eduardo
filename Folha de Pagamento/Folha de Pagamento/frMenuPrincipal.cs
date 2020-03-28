@@ -18,6 +18,8 @@ namespace Folha_de_Pagamento
             InitializeComponent();
             TratarArquivosTXT("Departamento.txt");
             TratarArquivosTXT("Funcionario.txt");
+            CarregarListaFuncionarios();
+            CarregarListaDepartamentos();
         }
         List<Funcionario> funcionarios = new List<Funcionario>();
         List<Departamento> departamentos = new List<Departamento>();
@@ -25,7 +27,9 @@ namespace Folha_de_Pagamento
         {
 
         }
-        #region
+
+        //Cadastros 
+        #region         
         /// <summary>
         /// Cadastro de Funcionarios
         /// </summary>
@@ -39,29 +43,38 @@ namespace Folha_de_Pagamento
             {
                 int codigo = Convert.ToInt16(txtCodigo.Value);
                 string nome = txtNomeFuncionario.Text;
-                string cPF = txtCPF.Text;
+                string cpf = txtCPF.Text.Replace(",",".");
                 DateTime dataNascimento = Convert.ToDateTime(txtNascimento.Text);
                 double salario = Convert.ToDouble(txtSalario.Text);
                 int departamento = Convert.ToInt16(cbxDepartamentos.SelectedItem);
-
+        
                 if (btnSelectFuncionario.Checked)
                     tipo = 'F';
                 else if (btnSelectGerente.Checked)
                     tipo = 'G';
-                
-                ChecarFuncaoFuncionario();
 
-                f = new Funcionario(codigo, nome, cPF, dataNascimento, salario, departamento, tipo);
+                //ChecarFuncaoFuncionario
+                if (btnSelectFuncionario.Checked)
+                {
+                    if (cbxDepartamentos.SelectedItem == null)
+                    {
+                        MessageBox.Show("Informe um departamento para o funcionario");
+                        return;
+                    }
+                }
+
+                f = new Funcionario(codigo, nome, cpf, dataNascimento, salario, departamento, tipo);
                 if (tipo == 'G')
                     cbxCodigoGerente.Items.Add(codigo);
+                File.AppendAllText("Funcionario.txt", codigo + "|" + nome + "|" + cpf + "|" + dataNascimento + "|"
+                                    + salario + "|" + departamento + "|" + tipo+"|"+Environment.NewLine);
             }
             catch (FormatException)
             {
                 MessageBox.Show("Informe valores de cadastro válidos", "Cadastro", MessageBoxButtons.OK);
                 return;
             }
-            funcionarios.Add(f);
-            //adicionar no txt de funcionarios     
+            funcionarios.Add(f);     
             MessageBox.Show("Novo usuario cadastrado");
         }
         /// <summary>
@@ -80,6 +93,8 @@ namespace Folha_de_Pagamento
 
                 d = new Departamento(codigoDepartamento, descricao, codigoGerente);
                 cbxDepartamentos.Items.Add(codigoDepartamento);
+                File.AppendAllText("Departamento.txt", codigoDepartamento + "|" + descricao + "|" 
+                                    + codigoGerente +"|"+ Environment.NewLine);
             }
             catch (FormatException)
             {
@@ -87,7 +102,6 @@ namespace Folha_de_Pagamento
                 return;
             }
             departamentos.Add(d);
-            //adicionar no txt de funcionarios
             MessageBox.Show("Novo Departamento cadastrado");
         }
         #endregion
@@ -102,23 +116,52 @@ namespace Folha_de_Pagamento
         private void TratarArquivosTXT(string nomeArquivo)
         {
             if (!File.Exists(nomeArquivo))
-                File.Create(nomeArquivo).Close();
+                File.Create(nomeArquivo).Close();                
         }
-        private void ChecarFuncaoFuncionario()
+        private void CarregarListaFuncionarios()
         {
-            if (btnSelectFuncionario.Checked)
+            Funcionario f;
+            // int qtdLinhas= File.ReadAllLines("Funcionario.txt").Count();
+            string[] linhas = File.ReadAllLines("Funcionario.txt");
+
+            foreach (string linha in linhas)
             {
-                if (cbxDepartamentos.SelectedItem == null)
-                {
-                    MessageBox.Show("Informe um departamento para o funcionario");
-                    return;
-                }
+                string[] dados =linha.Split('|');
+
+                int codigo= Convert.ToInt16(dados[0]);
+                string nome = dados[1];
+                string cpf = dados[2];
+                DateTime dataNascimento = Convert.ToDateTime(dados[3]);
+                double salario = Convert.ToDouble(dados[4]);
+                int departamento = Convert.ToInt16(dados[5]);
+                char tipo = Convert.ToChar(dados[6]);
+
+                f = new Funcionario(codigo, nome, cpf, dataNascimento, salario, departamento, tipo);
+                funcionarios.Add(f);
+
+                if (tipo == 'G')
+                    cbxCodigoGerente.Items.Add(codigo);
             }
         }
-
-        private void CarregarFuncionarioTXT()
+        public void CarregarListaDepartamentos()
         {
+            Departamento d;
+            string[] linhas = File.ReadAllLines("Departamento.txt");
 
+            foreach(string linha in linhas)
+            {
+                string[] dados = linha.Split('|');
+
+                int codigoDepartamento = Convert.ToInt16(dados[0]);
+                string descricao = dados[1];
+                int codigoGerente = Convert.ToInt16(dados[2]);
+
+                d = new Departamento(codigoDepartamento, descricao, codigoGerente);
+                departamentos.Add(d);
+
+                cbxDepartamentos.Items.Add(codigoDepartamento);
+
+            }
         }
 
        
