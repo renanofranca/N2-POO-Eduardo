@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Folha_de_Pagamento.Forms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace Folha_de_Pagamento
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frMenuPrincipal());
+            Application.Run(new frmMenu());
         }
     }
 }
