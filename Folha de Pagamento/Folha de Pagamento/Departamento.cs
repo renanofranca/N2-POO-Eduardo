@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Folha_de_Pagamento
 {
-    class Departamento
+    public class Departamento
     {
         private int codigo;
         private string descricao;

@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\ControleDados.cs" />
+    <Compile Include="Core\ControleFuncionarios.cs" />
+    <Compile Include="Core\Listagens.cs" />
     <Compile Include="Departamento.cs" />
     <Compile Include="Forms\frmMenu.cs">
       <SubType>Form</SubType>
@@ -127,7 +130,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Core\" />
     <Folder Include="VO\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

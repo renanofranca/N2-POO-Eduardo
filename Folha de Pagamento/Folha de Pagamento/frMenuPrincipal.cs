@@ -16,8 +16,7 @@ namespace Folha_de_Pagamento
         public frMenuPrincipal()
         {
             InitializeComponent();
-            TratarArquivosTXT("Departamento.txt");
-            TratarArquivosTXT("Funcionario.txt");
+
             CarregarListaFuncionarios();
             CarregarListaDepartamentos();
         }
@@ -113,11 +112,7 @@ namespace Folha_de_Pagamento
 
 
         //---------------------------------METODOS
-        private void TratarArquivosTXT(string nomeArquivo)
-        {
-            if (!File.Exists(nomeArquivo))
-                File.Create(nomeArquivo).Close();                
-        }
+
         private void CarregarListaFuncionarios()
         {
             Funcionario f;

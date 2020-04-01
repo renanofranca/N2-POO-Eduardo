@@ -30,18 +30,18 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.txtNomeGerente = new System.Windows.Forms.TextBox();
             this.btnCadastrar = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.nudCodigo = new System.Windows.Forms.NumericUpDown();
+            this.txtDescricao = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.cbxCodGerente = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCodigo)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -60,12 +60,12 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.textBox1);
-            this.groupBox3.Controls.Add(this.textBox3);
+            this.groupBox3.Controls.Add(this.cbxCodGerente);
+            this.groupBox3.Controls.Add(this.txtNomeGerente);
             this.groupBox3.Controls.Add(this.btnCadastrar);
             this.groupBox3.Controls.Add(this.label11);
-            this.groupBox3.Controls.Add(this.numericUpDown1);
-            this.groupBox3.Controls.Add(this.textBox2);
+            this.groupBox3.Controls.Add(this.nudCodigo);
+            this.groupBox3.Controls.Add(this.txtDescricao);
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.label9);
@@ -77,6 +77,14 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Cadastro de Departamento";
             // 
+            // txtNomeGerente
+            // 
+            this.txtNomeGerente.Enabled = false;
+            this.txtNomeGerente.Location = new System.Drawing.Point(166, 124);
+            this.txtNomeGerente.Name = "txtNomeGerente";
+            this.txtNomeGerente.Size = new System.Drawing.Size(144, 22);
+            this.txtNomeGerente.TabIndex = 32;
+            // 
             // btnCadastrar
             // 
             this.btnCadastrar.Location = new System.Drawing.Point(166, 157);
@@ -85,6 +93,7 @@
             this.btnCadastrar.TabIndex = 30;
             this.btnCadastrar.Text = "Cadastrar";
             this.btnCadastrar.UseVisualStyleBackColor = true;
+            this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
             // 
             // label11
             // 
@@ -95,24 +104,24 @@
             this.label11.TabIndex = 18;
             this.label11.Text = "Código:";
             // 
-            // numericUpDown1
+            // nudCodigo
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(166, 33);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.nudCodigo.Location = new System.Drawing.Point(166, 33);
+            this.nudCodigo.Maximum = new decimal(new int[] {
             100000000,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(144, 22);
-            this.numericUpDown1.TabIndex = 19;
+            this.nudCodigo.Name = "nudCodigo";
+            this.nudCodigo.Size = new System.Drawing.Size(144, 22);
+            this.nudCodigo.TabIndex = 19;
             // 
-            // textBox2
+            // txtDescricao
             // 
-            this.textBox2.Location = new System.Drawing.Point(166, 63);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(144, 22);
-            this.textBox2.TabIndex = 20;
+            this.txtDescricao.Location = new System.Drawing.Point(165, 63);
+            this.txtDescricao.Name = "txtDescricao";
+            this.txtDescricao.Size = new System.Drawing.Size(144, 22);
+            this.txtDescricao.TabIndex = 20;
             // 
             // label10
             // 
@@ -141,20 +150,13 @@
             this.label9.TabIndex = 22;
             this.label9.Text = "Código do Gerente:";
             // 
-            // textBox3
+            // cbxCodGerente
             // 
-            this.textBox3.Location = new System.Drawing.Point(166, 94);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(144, 22);
-            this.textBox3.TabIndex = 31;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(166, 124);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(144, 22);
-            this.textBox1.TabIndex = 32;
+            this.cbxCodGerente.FormattingEnabled = true;
+            this.cbxCodGerente.Location = new System.Drawing.Point(166, 94);
+            this.cbxCodGerente.Name = "cbxCodGerente";
+            this.cbxCodGerente.Size = new System.Drawing.Size(143, 24);
+            this.cbxCodGerente.TabIndex = 33;
             // 
             // uclCadastroDepartamento
             // 
@@ -167,7 +169,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCodigo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -178,12 +180,12 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btnCadastrar;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.NumericUpDown nudCodigo;
+        private System.Windows.Forms.TextBox txtDescricao;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtNomeGerente;
+        private System.Windows.Forms.ComboBox cbxCodGerente;
     }
 }

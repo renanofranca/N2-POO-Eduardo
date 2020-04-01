@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Folha_de_Pagamento.Core;
 
 namespace Folha_de_Pagamento
 {
@@ -17,6 +18,7 @@ namespace Folha_de_Pagamento
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            ControleDados.ValidarExistenciaTXTs();
             Application.Run(new frmMenu());
         }
     }

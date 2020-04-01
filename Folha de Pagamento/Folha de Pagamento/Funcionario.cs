@@ -8,7 +8,7 @@ using System.IO;
 
 namespace Folha_de_Pagamento
 {
-    class Funcionario
+    public class Funcionario
     {
         
         private string nome;
@@ -27,6 +27,7 @@ namespace Folha_de_Pagamento
             Departamento = _departamento;
             Tipo = _tipo;
         }
+
 
         public int Codigo { get; set; }
         public int Departamento { get; set; }

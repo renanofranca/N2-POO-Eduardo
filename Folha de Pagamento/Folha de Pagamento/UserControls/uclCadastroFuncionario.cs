@@ -31,19 +31,6 @@ namespace Folha_de_Pagamento.UserControls
             //abraco
         }
 
-        public void AplicarAumento(double aumento)
-        {
-            foreach(Funcionario f in funcionarios)
-            {
-                f.Salario = f.Salario + aumento;
-            }
-        }
-        public void AplicarAumento(double aumento,bool porcentagem)
-        {
-            foreach (Funcionario f in funcionarios)
-            {
-                f.Salario = f.Salario + f.Salario*aumento;
-            }
-        }
+
     }
 }
