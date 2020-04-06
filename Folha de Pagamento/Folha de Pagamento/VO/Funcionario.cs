@@ -38,8 +38,7 @@ namespace Folha_de_Pagamento
             {
                 if (String.IsNullOrEmpty(value))
                 {
-                    MessageBox.Show("Nome obrigatório");
-                    return;
+                    throw new Exception("Nome inválido");
                 }
 
                 nome = value;
@@ -52,8 +51,7 @@ namespace Folha_de_Pagamento
             {
                 if(value.Length != 14)
                 {
-                    MessageBox.Show("CPF inválido");
-                    return;
+                    throw new Exception("CPF inválido");
                 }
                 cpf = value;
             }
@@ -66,8 +64,7 @@ namespace Folha_de_Pagamento
             {
                 if (value > DateTime.Now)
                 {
-                    MessageBox.Show("Data Nascimento inválida");
-                    return;               
+                    throw new Exception("Data Nascimento inválida");        
                 }
                     dataNascimento = value;
             }
@@ -79,8 +76,7 @@ namespace Folha_de_Pagamento
             {
                 if (value <= 0)
                 {
-                    MessageBox.Show("Salário inválido");
-                    return;
+                    throw new Exception("Salário inválido");
                 }            
                 salario = value;
             }
@@ -92,10 +88,13 @@ namespace Folha_de_Pagamento
             {
                 if(value != 'G' && value != 'F')
                 {
-                    MessageBox.Show("Função Inválida");
-                    return;
+                    throw new Exception("Função Inválida");
                 }
-                   
+                if (value == 'F' && Departamento == -1)
+                {
+                    throw new Exception("Funcionário deve ter um departamento.");
+                }
+
                 tipo = value;
             }
         }

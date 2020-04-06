@@ -13,7 +13,26 @@ namespace Folha_de_Pagamento
         private string descricao;
         private int codigoGerente;
 
-        public int Codigo { get; set; }
+
+        public Departamento(int _codigo, string _descricao, int _codigoGerente)
+        {
+            Codigo = _codigo;
+            Descricao = _descricao;
+            CodigoGerente = _codigoGerente;
+        }
+
+        public int Codigo
+        {
+            get => codigo;
+            set
+            {
+                if (value < 0)
+                {
+                    throw new Exception("Código do Departamento não pode ser menor do que 0.");
+                }
+                codigo = value;
+            }
+        }
         public string Descricao
         {
             get => descricao;
@@ -21,8 +40,7 @@ namespace Folha_de_Pagamento
             {
                 if (String.IsNullOrEmpty(value))
                 {
-                    MessageBox.Show("Descricao esta vazia");
-                    return;
+                    throw new Exception("Descricao esta vazia");
                 }
                 descricao = value;
 
@@ -37,11 +55,5 @@ namespace Folha_de_Pagamento
             }
         }
 
-        public Departamento(int _codigo,string _descricao, int _codigoGerente)
-        {
-            Codigo = _codigo;
-            Descricao = _descricao;
-            CodigoGerente = _codigoGerente;
-        }
     }
 }

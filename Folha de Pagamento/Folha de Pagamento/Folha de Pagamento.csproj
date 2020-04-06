@@ -49,7 +49,8 @@
     <Compile Include="Core\ControleDados.cs" />
     <Compile Include="Core\ControleFuncionarios.cs" />
     <Compile Include="Core\Listagens.cs" />
-    <Compile Include="Departamento.cs" />
+    <Compile Include="VO\ComboBoxItem.cs" />
+    <Compile Include="VO\Departamento.cs" />
     <Compile Include="Forms\frmMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -62,7 +63,7 @@
     <Compile Include="frMenuPrincipal.Designer.cs">
       <DependentUpon>frMenuPrincipal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Funcionario.cs" />
+    <Compile Include="VO\Funcionario.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserControls\uclCadastroDepartamento.cs">
@@ -129,8 +130,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="VO\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -125,15 +125,15 @@ namespace Folha_de_Pagamento.Core
 
         #region Departamento
 
-        public static List<Funcionario> GetAllDepartamentos()
+        public static List<Departamento> GetAllDepartamentos()
         {
-            List<Funcionario> listaRetorno = new List<Funcionario>();
+            List<Departamento> listaRetorno = new List<Departamento>();
 
             string[] linhas = File.ReadAllLines(CAMINHOARQUIVODEPARTAMENTO);
 
             foreach (string linha in linhas)
             {
-                listaRetorno.Add(MontaFuncionario(linha));
+                listaRetorno.Add(MontarDepartamento(linha));
             }
 
             return listaRetorno;

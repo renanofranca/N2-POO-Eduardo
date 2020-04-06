@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Folha_de_Pagamento.Core;
+using Folha_de_Pagamento.VO;
 
 namespace Folha_de_Pagamento.UserControls
 {
@@ -16,27 +17,49 @@ namespace Folha_de_Pagamento.UserControls
         public uclCadastroDepartamento()
         {
             InitializeComponent();
+
+            CarregarItens();
+        }
+
+        private void CarregarItens()
+        {
+            CarregarComboDepartamentos();
+        }
+
+        private void CarregarComboDepartamentos()
+        {
+            List<Funcionario> gerentes = Core.ControleDados.GetFuncionariosTipados(ControleDados.EnumTipoFuncionario.Gerente);
+
+            foreach (Funcionario gerente in gerentes)
+            {
+                ComboBoxItem item = new ComboBoxItem((gerente.Codigo.ToString() + " - " + gerente.Nome), gerente.Codigo);
+
+                cbxCodGerente.Items.Add(item);
+            }
+
+
+
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-            Departamento d;
+
+            int codigoDepartamento = Convert.ToInt16(nudCodigo.Value);
+            string descricao = txtDescricao.Text;
+            int codigoGerente = (int)(cbxCodGerente.SelectedItem as ComboBoxItem).Value;
+
             try
             {
-                int codigoDepartamento = Convert.ToInt16(nudCodigo.Value);
-                string descricao = txtDescricao.Text;
-                int codigoGerente = Convert.ToInt16(cbxCodGerente.SelectedItem);
-
-                d = new Departamento(codigoDepartamento, descricao, codigoGerente);
+                Departamento d = new Departamento(codigoDepartamento, descricao, codigoGerente);
 
                 ControleDados.GravarDepartamento(d);
+                MessageBox.Show("Novo Departamento cadastrado");
             }
-            catch (FormatException)
+            catch (Exception erro)
             {
-                MessageBox.Show("Informe valores de cadastro válidos", "Cadastro", MessageBoxButtons.OK);
-                return;
+                MessageBox.Show(erro.Message);
             }
-            MessageBox.Show("Novo Departamento cadastrado");
+
         }
     }
 }

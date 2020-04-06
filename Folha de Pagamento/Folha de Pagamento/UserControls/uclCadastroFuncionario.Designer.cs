@@ -44,19 +44,19 @@
             this.rbtnFuncionario = new System.Windows.Forms.RadioButton();
             this.rbtnGerente = new System.Windows.Forms.RadioButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.nudSalario = new System.Windows.Forms.NumericUpDown();
+            this.dtpNascimento = new System.Windows.Forms.DateTimePicker();
             this.btnCadastrar = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbxDepartamento = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.nudCodigo = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtNome = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
-            this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
+            this.txtCpf = new System.Windows.Forms.MaskedTextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -66,7 +66,8 @@
             this.groupBox4.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSalario)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCodigo)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -242,19 +243,19 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.nudSalario);
+            this.groupBox3.Controls.Add(this.dtpNascimento);
             this.groupBox3.Controls.Add(this.btnCadastrar);
-            this.groupBox3.Controls.Add(this.comboBox1);
+            this.groupBox3.Controls.Add(this.cbxDepartamento);
             this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.label6);
-            this.groupBox3.Controls.Add(this.numericUpDown1);
+            this.groupBox3.Controls.Add(this.nudCodigo);
             this.groupBox3.Controls.Add(this.label7);
-            this.groupBox3.Controls.Add(this.textBox2);
-            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Controls.Add(this.txtNome);
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.label9);
-            this.groupBox3.Controls.Add(this.maskedTextBox1);
-            this.groupBox3.Controls.Add(this.maskedTextBox2);
+            this.groupBox3.Controls.Add(this.txtCpf);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(6, 96);
             this.groupBox3.Name = "groupBox3";
@@ -262,6 +263,27 @@
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Tipo";
+            // 
+            // nudSalario
+            // 
+            this.nudSalario.DecimalPlaces = 2;
+            this.nudSalario.Location = new System.Drawing.Point(167, 156);
+            this.nudSalario.Maximum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            0});
+            this.nudSalario.Name = "nudSalario";
+            this.nudSalario.Size = new System.Drawing.Size(143, 22);
+            this.nudSalario.TabIndex = 34;
+            // 
+            // dtpNascimento
+            // 
+            this.dtpNascimento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpNascimento.Location = new System.Drawing.Point(167, 123);
+            this.dtpNascimento.Name = "dtpNascimento";
+            this.dtpNascimento.Size = new System.Drawing.Size(143, 22);
+            this.dtpNascimento.TabIndex = 33;
             // 
             // btnCadastrar
             // 
@@ -271,14 +293,15 @@
             this.btnCadastrar.TabIndex = 30;
             this.btnCadastrar.Text = "Cadastrar";
             this.btnCadastrar.UseVisualStyleBackColor = true;
+            this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
             // 
-            // comboBox1
+            // cbxDepartamento
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(167, 186);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(143, 24);
-            this.comboBox1.TabIndex = 29;
+            this.cbxDepartamento.FormattingEnabled = true;
+            this.cbxDepartamento.Location = new System.Drawing.Point(167, 186);
+            this.cbxDepartamento.Name = "cbxDepartamento";
+            this.cbxDepartamento.Size = new System.Drawing.Size(143, 24);
+            this.cbxDepartamento.TabIndex = 29;
             // 
             // label11
             // 
@@ -298,17 +321,17 @@
             this.label6.TabIndex = 28;
             this.label6.Text = "Departamento:";
             // 
-            // numericUpDown1
+            // nudCodigo
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(166, 33);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.nudCodigo.Location = new System.Drawing.Point(166, 33);
+            this.nudCodigo.Maximum = new decimal(new int[] {
             100000000,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(144, 22);
-            this.numericUpDown1.TabIndex = 19;
+            this.nudCodigo.Name = "nudCodigo";
+            this.nudCodigo.Size = new System.Drawing.Size(144, 22);
+            this.nudCodigo.TabIndex = 19;
             // 
             // label7
             // 
@@ -319,19 +342,12 @@
             this.label7.TabIndex = 27;
             this.label7.Text = "Salário:";
             // 
-            // textBox2
+            // txtNome
             // 
-            this.textBox2.Location = new System.Drawing.Point(166, 63);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(144, 22);
-            this.textBox2.TabIndex = 20;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(166, 155);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(144, 22);
-            this.textBox1.TabIndex = 26;
+            this.txtNome.Location = new System.Drawing.Point(166, 63);
+            this.txtNome.Name = "txtNome";
+            this.txtNome.Size = new System.Drawing.Size(144, 22);
+            this.txtNome.TabIndex = 20;
             // 
             // label10
             // 
@@ -360,23 +376,13 @@
             this.label9.TabIndex = 22;
             this.label9.Text = "CPF:";
             // 
-            // maskedTextBox1
+            // txtCpf
             // 
-            this.maskedTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.maskedTextBox1.Location = new System.Drawing.Point(166, 124);
-            this.maskedTextBox1.Mask = "00/00/0000";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(144, 22);
-            this.maskedTextBox1.TabIndex = 24;
-            this.maskedTextBox1.ValidatingType = typeof(System.DateTime);
-            // 
-            // maskedTextBox2
-            // 
-            this.maskedTextBox2.Location = new System.Drawing.Point(166, 94);
-            this.maskedTextBox2.Mask = "000.000.000-00";
-            this.maskedTextBox2.Name = "maskedTextBox2";
-            this.maskedTextBox2.Size = new System.Drawing.Size(144, 22);
-            this.maskedTextBox2.TabIndex = 23;
+            this.txtCpf.Location = new System.Drawing.Point(166, 94);
+            this.txtCpf.Mask = "000.000.000-00";
+            this.txtCpf.Name = "txtCpf";
+            this.txtCpf.Size = new System.Drawing.Size(144, 22);
+            this.txtCpf.TabIndex = 23;
             // 
             // uclCadastroFuncionario
             // 
@@ -399,7 +405,8 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudSalario)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCodigo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -411,18 +418,16 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.RadioButton rbtnFuncionario;
         private System.Windows.Forms.RadioButton rbtnGerente;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbxDepartamento;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown nudCodigo;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox2;
+        private System.Windows.Forms.MaskedTextBox txtCpf;
         private System.Windows.Forms.Button btnCadastrar;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.GroupBox groupBox6;
@@ -435,5 +440,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown txtPercentualAumento;
         private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.DateTimePicker dtpNascimento;
+        private System.Windows.Forms.NumericUpDown nudSalario;
     }
 }
