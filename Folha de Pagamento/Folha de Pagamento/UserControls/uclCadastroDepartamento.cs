@@ -54,7 +54,16 @@ namespace Folha_de_Pagamento.UserControls
 
             try
             {
+                List<Departamento> departamentos = ControleDados.GetAllDepartamentos();
+
+                foreach (Departamento dep in departamentos)
+                {
+                    if (dep.Codigo == codigoDepartamento)
+                        throw new Exception("Código já existente");
+                }
+
                 Departamento d = new Departamento(codigoDepartamento, descricao, codigoGerente);
+
 
                 ControleDados.GravarDepartamento(d);
                 

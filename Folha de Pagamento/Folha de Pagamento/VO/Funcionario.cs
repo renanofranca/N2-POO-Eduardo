@@ -40,15 +40,6 @@ namespace Folha_de_Pagamento
                 {
                     throw new Exception("Código do Departamento não pode ser menor do que 0.");
                 }
-
-                List<Funcionario> funcionarios = ControleDados.GetAllFuncionarios();
-
-                foreach(Funcionario f in funcionarios)
-                {
-                    if(f.codigo == value)
-                        throw new Exception("Código já existente");
-                }
-
                 codigo = value;
             }
         }

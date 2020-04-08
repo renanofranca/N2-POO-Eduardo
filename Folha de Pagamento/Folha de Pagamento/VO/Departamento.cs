@@ -31,14 +31,6 @@ namespace Folha_de_Pagamento
                 {
                     throw new Exception("Código do Departamento não pode ser menor do que 0.");
                 }
-                List<Departamento> departamentos = ControleDados.GetAllDepartamentos();
-
-                foreach (Departamento d in departamentos)
-                {
-                    if (d.codigo == value)
-                        throw new Exception("Código já existente");
-                }
-
                 codigo = value;
             }
         }

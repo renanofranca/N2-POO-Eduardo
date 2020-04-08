@@ -103,6 +103,14 @@ namespace Folha_de_Pagamento.UserControls
                 else
                     tipo = ' ';
 
+                List<Funcionario> funcionarios = ControleDados.GetAllFuncionarios();
+
+                foreach (Funcionario f in funcionarios)
+                {
+                    if (f.Codigo == codigo)
+                        throw new Exception("Código já existente");
+                }
+
                 return new Funcionario(codigo, nome, cpf, dataNascimento, salario, departamento, tipo);
             }
             catch(Exception e)
