@@ -35,10 +35,10 @@
             this.rdbPercentual = new System.Windows.Forms.RadioButton();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtValorAumento = new System.Windows.Forms.NumericUpDown();
+            this.nudValorAumento = new System.Windows.Forms.NumericUpDown();
             this.btnAplicarAumento = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtPercentualAumento = new System.Windows.Forms.NumericUpDown();
+            this.nudPercentualAumento = new System.Windows.Forms.NumericUpDown();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.rbtnFuncionario = new System.Windows.Forms.RadioButton();
@@ -61,8 +61,8 @@
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtValorAumento)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPercentualAumento)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudValorAumento)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPercentualAumento)).BeginInit();
             this.groupBox4.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -119,6 +119,7 @@
             this.rdbValorFixo.TabStop = true;
             this.rdbValorFixo.Text = "Valor Fixo";
             this.rdbValorFixo.UseVisualStyleBackColor = true;
+            this.rdbValorFixo.CheckedChanged += new System.EventHandler(this.rdbValorFixo_CheckedChanged);
             // 
             // rdbPercentual
             // 
@@ -130,14 +131,15 @@
             this.rdbPercentual.TabStop = true;
             this.rdbPercentual.Text = "Percentual";
             this.rdbPercentual.UseVisualStyleBackColor = true;
+            this.rdbPercentual.CheckedChanged += new System.EventHandler(this.rdbPercentual_CheckedChanged);
             // 
             // groupBox7
             // 
             this.groupBox7.Controls.Add(this.label3);
-            this.groupBox7.Controls.Add(this.txtValorAumento);
+            this.groupBox7.Controls.Add(this.nudValorAumento);
             this.groupBox7.Controls.Add(this.btnAplicarAumento);
             this.groupBox7.Controls.Add(this.label1);
-            this.groupBox7.Controls.Add(this.txtPercentualAumento);
+            this.groupBox7.Controls.Add(this.nudPercentualAumento);
             this.groupBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox7.Location = new System.Drawing.Point(6, 96);
             this.groupBox7.Name = "groupBox7";
@@ -155,18 +157,18 @@
             this.label3.TabIndex = 32;
             this.label3.Text = "Valor do Aumento(R$)";
             // 
-            // txtValorAumento
+            // nudValorAumento
             // 
-            this.txtValorAumento.DecimalPlaces = 2;
-            this.txtValorAumento.Location = new System.Drawing.Point(186, 64);
-            this.txtValorAumento.Maximum = new decimal(new int[] {
+            this.nudValorAumento.DecimalPlaces = 2;
+            this.nudValorAumento.Location = new System.Drawing.Point(186, 64);
+            this.nudValorAumento.Maximum = new decimal(new int[] {
             999,
             0,
             0,
             0});
-            this.txtValorAumento.Name = "txtValorAumento";
-            this.txtValorAumento.Size = new System.Drawing.Size(124, 22);
-            this.txtValorAumento.TabIndex = 33;
+            this.nudValorAumento.Name = "nudValorAumento";
+            this.nudValorAumento.Size = new System.Drawing.Size(124, 22);
+            this.nudValorAumento.TabIndex = 33;
             // 
             // btnAplicarAumento
             // 
@@ -187,13 +189,13 @@
             this.label1.TabIndex = 18;
             this.label1.Text = "Percentual do Aumento (%)";
             // 
-            // txtPercentualAumento
+            // nudPercentualAumento
             // 
-            this.txtPercentualAumento.DecimalPlaces = 2;
-            this.txtPercentualAumento.Location = new System.Drawing.Point(186, 33);
-            this.txtPercentualAumento.Name = "txtPercentualAumento";
-            this.txtPercentualAumento.Size = new System.Drawing.Size(124, 22);
-            this.txtPercentualAumento.TabIndex = 19;
+            this.nudPercentualAumento.DecimalPlaces = 2;
+            this.nudPercentualAumento.Location = new System.Drawing.Point(186, 33);
+            this.nudPercentualAumento.Name = "nudPercentualAumento";
+            this.nudPercentualAumento.Size = new System.Drawing.Size(124, 22);
+            this.nudPercentualAumento.TabIndex = 19;
             // 
             // groupBox4
             // 
@@ -398,8 +400,8 @@
             this.groupBox6.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtValorAumento)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPercentualAumento)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudValorAumento)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPercentualAumento)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -435,10 +437,10 @@
         private System.Windows.Forms.RadioButton rdbPercentual;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.NumericUpDown txtValorAumento;
+        private System.Windows.Forms.NumericUpDown nudValorAumento;
         private System.Windows.Forms.Button btnAplicarAumento;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.NumericUpDown txtPercentualAumento;
+        private System.Windows.Forms.NumericUpDown nudPercentualAumento;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.DateTimePicker dtpNascimento;
         private System.Windows.Forms.NumericUpDown nudSalario;

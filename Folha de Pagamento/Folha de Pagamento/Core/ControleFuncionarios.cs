@@ -18,6 +18,7 @@ namespace Folha_de_Pagamento.Core
         public static void AplicarAumento(double aumento, EnumTipoAumento tipo)
         {
             List<Funcionario> funcionarios = ControleDados.GetAllFuncionarios();
+            
 
             if (tipo == EnumTipoAumento.ValorFixo)
             {
@@ -25,12 +26,14 @@ namespace Folha_de_Pagamento.Core
                 {
                     f.Salario = f.Salario + aumento;
                 }
+                ControleDados.GravarListaFuncionarios(funcionarios);
             }
             else if(tipo == EnumTipoAumento.Percentual)
             {
                 foreach (Funcionario f in funcionarios)
                 {
                     f.Salario = f.Salario + f.Salario * aumento;
+                    ControleDados.GravarListaFuncionarios(funcionarios);
                 }
             }
         }

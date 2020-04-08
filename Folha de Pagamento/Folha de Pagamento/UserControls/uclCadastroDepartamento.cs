@@ -23,10 +23,10 @@ namespace Folha_de_Pagamento.UserControls
 
         private void CarregarItens()
         {
-            CarregarComboDepartamentos();
+            CarregarComboGerente();
         }
 
-        private void CarregarComboDepartamentos()
+        private void CarregarComboGerente()
         {
             List<Funcionario> gerentes = Core.ControleDados.GetFuncionariosTipados(ControleDados.EnumTipoFuncionario.Gerente);
 
@@ -36,9 +36,13 @@ namespace Folha_de_Pagamento.UserControls
 
                 cbxCodGerente.Items.Add(item);
             }
+        }
 
-
-
+        private void LimparCampos()
+        {
+            nudCodigo.Value = 0;
+            cbxCodGerente.SelectedIndex = -1;
+            txtDescricao.Text = "";
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e)
@@ -53,13 +57,15 @@ namespace Folha_de_Pagamento.UserControls
                 Departamento d = new Departamento(codigoDepartamento, descricao, codigoGerente);
 
                 ControleDados.GravarDepartamento(d);
+                
                 MessageBox.Show("Novo Departamento cadastrado");
             }
             catch (Exception erro)
             {
                 MessageBox.Show(erro.Message);
+                return;
             }
-
+            LimparCampos();
         }
     }
 }

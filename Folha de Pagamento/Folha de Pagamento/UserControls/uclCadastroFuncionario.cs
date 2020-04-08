@@ -18,6 +18,8 @@ namespace Folha_de_Pagamento.UserControls
         {
             InitializeComponent();
             rbtnFuncionario.Checked = true;
+            rdbPercentual.Checked = true;
+            CarregarItens();
         }
 
         private void CarregarItens()
@@ -35,23 +37,28 @@ namespace Folha_de_Pagamento.UserControls
 
                 cbxDepartamento.Items.Add(item);
             }
-
-
-
         }
+
         //precisa pegar da lista que ja existe dos funcionarios
         List<Funcionario> funcionarios = new List<Funcionario>();
         private void btnAplicarAumento_Click(object sender, EventArgs e)
         {
-            //if (rdbPercentual.Checked)
-            //    AplicarAumento(Convert.ToDouble(txtPercentualAumento), true);
-            //else if (rdbValorFixo.Checked)
-            //    AplicarAumento(Convert.ToDouble(txtValorAumento));
-            //else
-            //    MessageBox.Show("Selecione uma forma de aumento");
-
-            //Precisa salvar a lista de funcionarios alterada no txt, porem agora estou com preguica
-            //abraco
+            if (rdbPercentual.Checked)
+            {
+                ControleFuncionarios.AplicarAumento(Convert.ToDouble(nudPercentualAumento.Value / 100), ControleFuncionarios.EnumTipoAumento.Percentual);
+                MessageBox.Show("Aumento Aplicado com Sucesso");
+                nudPercentualAumento.Value = 0;
+                nudValorAumento.Value = 0;
+            }
+            else if (rdbValorFixo.Checked)
+            {
+                ControleFuncionarios.AplicarAumento(Convert.ToDouble(nudValorAumento.Value));
+                MessageBox.Show("Aumento Aplicado com Sucesso");
+                nudPercentualAumento.Value = 0;
+                nudValorAumento.Value = 0;
+            }
+            else
+                MessageBox.Show("Selecione uma forma de aumento");
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e)
@@ -84,7 +91,7 @@ namespace Folha_de_Pagamento.UserControls
                 string cpf = txtCpf.Text;
                 int codigo = Convert.ToInt32(nudCodigo.Value);
                 DateTime dataNascimento = dtpNascimento.Value;
-                int departamento = cbxDepartamento.SelectedItem == null? -1 : Convert.ToInt32(cbxDepartamento.SelectedItem);
+                int departamento = cbxDepartamento.SelectedItem == null? -1 : (int)(cbxDepartamento.SelectedItem as ComboBoxItem).Value; ;
                 string nome = txtNome.Text;
                 double salario = Convert.ToDouble(nudSalario.Value);
                 char tipo;
@@ -105,6 +112,30 @@ namespace Folha_de_Pagamento.UserControls
             }
             
 
+        }
+
+        private void rdbPercentual_CheckedChanged(object sender, EventArgs e)
+        {
+            BloquearNudAumento();
+        }
+
+        private void BloquearNudAumento()
+        {
+            if(rdbPercentual.Checked)
+            {
+                nudValorAumento.Enabled = false;
+                nudPercentualAumento.Enabled = true;
+            }
+            if (rdbValorFixo.Checked)
+            {
+                nudValorAumento.Enabled = true;
+                nudPercentualAumento.Enabled = false;
+            }
+        }
+
+        private void rdbValorFixo_CheckedChanged(object sender, EventArgs e)
+        {
+            BloquearNudAumento();
         }
     }
 }

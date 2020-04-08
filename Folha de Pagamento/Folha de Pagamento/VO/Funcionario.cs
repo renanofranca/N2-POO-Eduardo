@@ -5,12 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using Folha_de_Pagamento.Core;
 
 namespace Folha_de_Pagamento
 {
     public class Funcionario
     {
-        
+
+        private int codigo;
         private string nome;
         private string cpf;
         private DateTime dataNascimento;
@@ -29,7 +31,27 @@ namespace Folha_de_Pagamento
         }
 
 
-        public int Codigo { get; set; }
+        public int Codigo 
+        { 
+            get => codigo; 
+            set
+            {
+                if (value < 0)
+                {
+                    throw new Exception("Código do Departamento não pode ser menor do que 0.");
+                }
+
+                List<Funcionario> funcionarios = ControleDados.GetAllFuncionarios();
+
+                foreach(Funcionario f in funcionarios)
+                {
+                    if(f.codigo == value)
+                        throw new Exception("Código já existente");
+                }
+
+                codigo = value;
+            }
+        }
         public int Departamento { get; set; }
         public string Nome
         {
