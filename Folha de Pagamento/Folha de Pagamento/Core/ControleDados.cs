@@ -31,7 +31,7 @@ namespace Folha_de_Pagamento.Core
         /// <summary>
         /// Busca todos os funcionários da base de dados.
         /// </summary>
-        /// <returns>Retorna todos os funcionários</returns>
+        /// <returns>Retorna uma lista de funcionarios</returns>
         public static List<Funcionario> GetAllFuncionarios()
         {
             List<Funcionario> listaRetorno = new List<Funcionario>();
@@ -47,10 +47,10 @@ namespace Folha_de_Pagamento.Core
         }
 
         /// <summary>
-        /// 
+        /// Busca os funcionarios pelo tipo
         /// </summary>
-        /// <param name="tipo"></param>
-        /// <returns></returns>
+        /// <param name="tipo">enumerador do tipo de funcionario</param>
+        /// <returns>Retorna uma lista de funcionarios</returns>
         public static List<Funcionario> GetFuncionariosTipados(EnumTipoFuncionario tipo)
         {
             List<Funcionario> listaRetorno = new List<Funcionario>();
@@ -80,17 +80,22 @@ namespace Folha_de_Pagamento.Core
             return listaRetorno;
         }
 
-        public static List<Funcionario> GetFuncionariosPorGerente(int codDepartamento)
+        /// <summary>
+        ///  Busca os funcionarios pelo gerente
+        /// </summary>
+        /// <param name="codGerente">Codigo do Gerente</param>
+        /// <returns>Retorna uma lista de funcionarios</returns>
+        public static List<Funcionario> GetFuncionariosPorGerente(int codGerente)
         {
             List<Funcionario> listaRetorno = new List<Funcionario>();
 
-            string[] linhas = File.ReadAllLines(CAMINHOARQUIVOFUNCIONARIO);
+            List<Departamento> departamentos = GetDepartamentosPorGerente(codGerente);
 
-            foreach (string linha in linhas)
+            List<Funcionario> funcionarios = GetAllFuncionarios();
+
+            foreach(Departamento d in departamentos)
             {
-                Funcionario f = MontaFuncionario(linha);
-                if (f.Tipo == 'F' && f.Departamento == codDepartamento)
-                    listaRetorno.Add(MontaFuncionario(linha));
+                listaRetorno.AddRange(funcionarios.Where(o => o.Departamento == d.Codigo && o.Codigo != codGerente));
             }
 
             return listaRetorno;
@@ -188,11 +193,11 @@ namespace Folha_de_Pagamento.Core
 
         }
 
-        public static void GravarListaDepartamento(List<Departamento>departamentos)
+        public static void GravarListaDepartamento(List<Departamento> departamentos)
         {
-            File.WriteAllText(CAMINHOARQUIVODEPARTAMENTO,"");
+            File.WriteAllText(CAMINHOARQUIVODEPARTAMENTO, "");
 
-            foreach(Departamento d in departamentos)
+            foreach (Departamento d in departamentos)
                 GravarDepartamento(d);
         }
 
