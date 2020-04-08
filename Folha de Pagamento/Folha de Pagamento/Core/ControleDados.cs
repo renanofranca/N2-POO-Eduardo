@@ -101,6 +101,11 @@ namespace Folha_de_Pagamento.Core
             return listaRetorno;
         }
 
+        /// <summary>
+        /// Monta o VO do Funcionario
+        /// </summary>
+        /// <param name="linha">Linha da base de dados</param>
+        /// <returns>Retorna um Funcionario</returns>
         private static Funcionario MontaFuncionario(string linha)
         {
             try
@@ -124,6 +129,10 @@ namespace Folha_de_Pagamento.Core
 
         }
 
+        /// <summary>
+        /// Grava uma lista de funcionarios.
+        /// </summary>
+        /// <param name="funcionarios">Lista de funcionarios</param>
         public static void GravarListaFuncionarios(List<Funcionario> funcionarios)
         {
             File.WriteAllText(CAMINHOARQUIVOFUNCIONARIO, "");
@@ -132,6 +141,10 @@ namespace Folha_de_Pagamento.Core
                 GravarFuncionario(f);
         }
 
+        /// <summary>
+        /// Grava um unico funcionario da base de dados.
+        /// </summary>
+        /// <param name="f">Funcionario a ser gravado</param>
         public static void GravarFuncionario(Funcionario f)
         {
             File.AppendAllText(CAMINHOARQUIVOFUNCIONARIO, f.Codigo + "|" + f.Nome + "|" + f.CPF + "|" + f.DataNascimento + "|"
@@ -142,6 +155,10 @@ namespace Folha_de_Pagamento.Core
 
         #region Departamento
 
+        /// <summary>
+        /// Busca todos os departamentos da base de dados.
+        /// </summary>
+        /// <returns>Retorna uma lista de Departamentos</returns>
         public static List<Departamento> GetAllDepartamentos()
         {
             List<Departamento> listaRetorno = new List<Departamento>();
@@ -156,11 +173,16 @@ namespace Folha_de_Pagamento.Core
             return listaRetorno;
         }
 
+        /// <summary>
+        /// Busca os departamentos de um determinado Gerente
+        /// </summary>
+        /// <param name="codGerente">Código do Gerente</param>
+        /// <returns>Retorna uma lista de Departamentos</returns>
         public static List<Departamento> GetDepartamentosPorGerente(int codGerente)
         {
             List<Departamento> listaRetorno = new List<Departamento>();
 
-            string[] linhas = File.ReadAllLines(CAMINHOARQUIVOFUNCIONARIO);
+            string[] linhas = File.ReadAllLines(CAMINHOARQUIVODEPARTAMENTO);
 
             foreach (string linha in linhas)
             {
@@ -169,9 +191,16 @@ namespace Folha_de_Pagamento.Core
                     listaRetorno.Add(d);
             }
 
+            listaRetorno = listaRetorno.Where(o => o.CodigoGerente == codGerente).ToList();
+
             return listaRetorno;
         }
 
+        /// <summary>
+        /// Monta o VO do Departamento
+        /// </summary>
+        /// <param name="linha"></param>
+        /// <returns></returns>
         private static Departamento MontarDepartamento(string linha)
         {
             try
@@ -193,6 +222,10 @@ namespace Folha_de_Pagamento.Core
 
         }
 
+        /// <summary>
+        /// Grava uma lista de Departamentos na base de dados
+        /// </summary>
+        /// <param name="departamentos">Lista de Departmentos a ser gravada</param>
         public static void GravarListaDepartamento(List<Departamento> departamentos)
         {
             File.WriteAllText(CAMINHOARQUIVODEPARTAMENTO, "");
@@ -201,6 +234,10 @@ namespace Folha_de_Pagamento.Core
                 GravarDepartamento(d);
         }
 
+        /// <summary>
+        /// Grava um unico Departamento na base de dados.
+        /// </summary>
+        /// <param name="d">Departamento a ser gravado</param>
         public static void GravarDepartamento(Departamento d)
         {
             File.AppendAllText(CAMINHOARQUIVODEPARTAMENTO, d.Codigo + "|" + d.Descricao + "|"

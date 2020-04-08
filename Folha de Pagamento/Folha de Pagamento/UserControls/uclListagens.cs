@@ -24,6 +24,9 @@ namespace Folha_de_Pagamento.UserControls
             cmbMes.Enabled = false;
         }
 
+        /// <summary>
+        /// Bloqueia os controles que não devem ser usados
+        /// </summary>
         private void BloquearParametrosDesnecessarios()
         {
             if (rbtnListGeral.Checked == true)
@@ -61,29 +64,48 @@ namespace Folha_de_Pagamento.UserControls
         private void rbtnListGeral_CheckedChanged(object sender, EventArgs e)
         {
             txtListagem.Text = "";
+            cmbDepartamento.SelectedIndex = -1;
+            cmbGerente.SelectedIndex = -1;
+            cmbMes.SelectedIndex = -1;
             BloquearParametrosDesnecessarios();
             txtListagem.Text = Listagens.ListagemGeral();
         }
 
         private void rbtnListDep_CheckedChanged(object sender, EventArgs e)
         {
+            txtListagem.Text = "";
+            cmbDepartamento.SelectedIndex = -1;
+            cmbGerente.SelectedIndex = -1;
+            cmbMes.SelectedIndex = -1;
             BloquearParametrosDesnecessarios();
         }
 
         private void rbtnListGer_CheckedChanged(object sender, EventArgs e)
         {
+            txtListagem.Text = "";
+            cmbDepartamento.SelectedIndex = -1;
+            cmbGerente.SelectedIndex = -1;
+            cmbMes.SelectedIndex = -1;
             BloquearParametrosDesnecessarios();
         }
 
         private void rbtnListNasc_CheckedChanged(object sender, EventArgs e)
         {
+            txtListagem.Text = "";
+            cmbDepartamento.SelectedIndex = -1;
+            cmbGerente.SelectedIndex = -1;
+            cmbMes.SelectedIndex = -1;
             BloquearParametrosDesnecessarios();
         }
 
         private void rbtnListTodosGer_CheckedChanged(object sender, EventArgs e)
         {
+            txtListagem.Text = "";
+            cmbDepartamento.SelectedIndex = -1;
+            cmbGerente.SelectedIndex = -1;
+            cmbMes.SelectedIndex = -1;
             BloquearParametrosDesnecessarios();
-            Dictionary<string, bool> linhas = Listagens.ListagemTodosGerentes();
+            List<KeyValuePair<string, bool>> linhas = Listagens.ListagemTodosGerentes();
 
             foreach(KeyValuePair<string, bool> linha in linhas)
             {
@@ -103,16 +125,25 @@ namespace Folha_de_Pagamento.UserControls
 
         private void cmbGerente_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtListagem.Text = "";
-            txtListagem.Text = Listagens.ListagemGerente((int)(cmbGerente.SelectedItem as ComboBoxItem).Value);
+            if (cmbGerente.SelectedIndex >= 0)
+            {
+                txtListagem.Text = "";
+                txtListagem.Text = Listagens.ListagemGerente((int)(cmbGerente.SelectedItem as ComboBoxItem).Value);
+            }
         }
 
         private void cmbDepartamento_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtListagem.Text = "";
-            txtListagem.Text = Listagens.ListagemDepartamento((int)(cmbDepartamento.SelectedItem as ComboBoxItem).Value);
+            if (cmbDepartamento.SelectedIndex >= 0)
+            {
+                txtListagem.Text = "";
+                txtListagem.Text = Listagens.ListagemDepartamento((int)(cmbDepartamento.SelectedItem as ComboBoxItem).Value);
+            }
         }
 
+        /// <summary>
+        /// Carrega os valores do combobox de departamentos
+        /// </summary>
         private void CarregarComboDepartamentos()
         {
             List<Departamento> departamentos = Core.ControleDados.GetAllDepartamentos();
@@ -125,6 +156,9 @@ namespace Folha_de_Pagamento.UserControls
             }
         }
 
+        /// <summary>
+        /// Carrega os valores do combobox de gerentes
+        /// </summary>
         private void CarregarComboGerente()
         {
             List<Funcionario> gerentes = Core.ControleDados.GetFuncionariosTipados(ControleDados.EnumTipoFuncionario.Gerente);

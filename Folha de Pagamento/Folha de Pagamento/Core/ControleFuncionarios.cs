@@ -10,11 +10,20 @@ namespace Folha_de_Pagamento.Core
     {
         public enum EnumTipoAumento { Percentual, ValorFixo}
 
+        /// <summary>
+        /// Metodo que aplica aumento com valor Fixo
+        /// </summary>
+        /// <param name="aumento">Valor do aumento</param>
         public static void AplicarAumento(double aumento)
         {
             AplicarAumento(aumento, EnumTipoAumento.ValorFixo);
         }
 
+        /// <summary>
+        /// Método que aplica o aumento por tipo de aumento
+        /// </summary>
+        /// <param name="aumento">valor do aumento</param>
+        /// <param name="tipo">enumerador contendo o tipo do aumento</param>
         public static void AplicarAumento(double aumento, EnumTipoAumento tipo)
         {
             List<Funcionario> funcionarios = ControleDados.GetAllFuncionarios();

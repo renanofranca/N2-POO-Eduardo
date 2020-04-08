@@ -21,11 +21,17 @@ namespace Folha_de_Pagamento.UserControls
             CarregarItens();
         }
 
+        /// <summary>
+        /// Carrega os Controles da Tela
+        /// </summary>
         private void CarregarItens()
         {
             CarregarComboGerente();
         }
 
+        /// <summary>
+        /// Carrega o ComboBox de Gerente
+        /// </summary>
         private void CarregarComboGerente()
         {
             List<Funcionario> gerentes = Core.ControleDados.GetFuncionariosTipados(ControleDados.EnumTipoFuncionario.Gerente);
@@ -38,6 +44,9 @@ namespace Folha_de_Pagamento.UserControls
             }
         }
 
+        /// <summary>
+        /// Limpa todos os campos do UserControl
+        /// </summary>
         private void LimparCampos()
         {
             nudCodigo.Value = 0;
@@ -47,6 +56,9 @@ namespace Folha_de_Pagamento.UserControls
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
+
+            if(cbxCodGerente.SelectedItem == null)
+                throw new Exception("Necessário selecionar um Gerente");
 
             int codigoDepartamento = Convert.ToInt16(nudCodigo.Value);
             string descricao = txtDescricao.Text;

@@ -22,11 +22,17 @@ namespace Folha_de_Pagamento.UserControls
             CarregarItens();
         }
 
+        /// <summary>
+        /// Carrega os Controles da Tela
+        /// </summary>
         private void CarregarItens()
         {
             CarregarComboDepartamentos();
         }
 
+        /// <summary>
+        /// Carrega o ComboBox de Departamentos
+        /// </summary>
         private void CarregarComboDepartamentos()
         {
             List<Departamento> departamentos = Core.ControleDados.GetAllDepartamentos();
@@ -39,8 +45,6 @@ namespace Folha_de_Pagamento.UserControls
             }
         }
 
-        //precisa pegar da lista que ja existe dos funcionarios
-        List<Funcionario> funcionarios = new List<Funcionario>();
         private void btnAplicarAumento_Click(object sender, EventArgs e)
         {
             if (rdbPercentual.Checked)
@@ -73,6 +77,9 @@ namespace Folha_de_Pagamento.UserControls
             }
         }
 
+        /// <summary>
+        /// Limpa os controles da Tela
+        /// </summary>
         private void LimparDados()
         {
             txtCpf.Text = "";
@@ -84,6 +91,10 @@ namespace Folha_de_Pagamento.UserControls
             rbtnFuncionario.Checked = true;
         }
 
+        /// <summary>
+        /// Valida os dados que serão inseridos para o funcionario
+        /// </summary>
+        /// <returns></returns>
         private Funcionario GetFuncionarioValidado()
         {
             try
@@ -130,6 +141,9 @@ namespace Folha_de_Pagamento.UserControls
             BloquearNudAumento();
         }
 
+        /// <summary>
+        /// Bloqueia o controle de parametro de aumento que não será necessário.
+        /// </summary>
         private void BloquearNudAumento()
         {
             if(rdbPercentual.Checked)

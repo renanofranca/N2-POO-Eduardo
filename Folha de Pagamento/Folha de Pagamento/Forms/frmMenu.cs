@@ -32,6 +32,9 @@ namespace Folha_de_Pagamento.Forms
             CorrigirTamanhoTela();
         }
 
+        /// <summary>
+        /// Corrige o tamanho do UserControl
+        /// </summary>
         private void CorrigirTamanhoTela()
         {
             tlpTelas.Controls[0].Size = new Size(tlpTelas.Size.Width, tlpTelas.Size.Height);
@@ -65,25 +68,41 @@ namespace Folha_de_Pagamento.Forms
             CorrigirTamanhoTela();
         }
 
+        /// <summary>
+        /// Limpa o TableLayoutPanel para excluir os UserControls Existentes
+        /// </summary>
         private void LimparTlpTelas()
         {
             tlpTelas.Controls.Clear();
         }
 
+        /// <summary>
+        /// Adiciona a UserControl de informações do sistema
+        /// </summary>
         private void AdicionarTelaInfoSistema()
         {
             tlpTelas.Controls.Add(new uclInformacoesSistema());
         }
 
+        /// <summary>
+        /// Adiciona o UserControl de Controle de Funcionarios
+        /// </summary>
         private void AdicionarTelaCadastroFuncionario()
         {
             tlpTelas.Controls.Add(new uclCadastroFuncionario());
         }
 
+        /// <summary>
+        /// Adiciona o UserControl de Controle de Departamento
+        /// </summary>
         private void AdicionarTelaCadastroDepartamento()
         {
             tlpTelas.Controls.Add(new uclCadastroDepartamento());
         }
+
+        /// <summary>
+        /// Adiciona o UserControl de Tela de Listagens
+        /// </summary>
         private void AdicionarTelaListagens()
         {
             tlpTelas.Controls.Add(new uclListagens());

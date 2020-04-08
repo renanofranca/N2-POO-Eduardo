@@ -8,7 +8,10 @@ namespace Folha_de_Pagamento.Core
 {
     public class Listagens
     {
-
+        /// <summary>
+        /// Lista no modelo de listagem geral
+        /// </summary>
+        /// <returns>Retorna a string pronta</returns>
         public static string ListagemGeral()
         {
             StringBuilder retorno = new StringBuilder();
@@ -46,7 +49,7 @@ namespace Folha_de_Pagamento.Core
                     retorno.Append("Sem Departamento");
 
                 retorno.Append("\t");
-                retorno.Append(funcionario.DataNascimento);
+                retorno.Append(funcionario.DataNascimento.ToShortDateString());
                 retorno.Append("\t");
                 retorno.Append(funcionario.CPF);
                 retorno.Append("\t");
@@ -62,6 +65,12 @@ namespace Folha_de_Pagamento.Core
 
             return retorno.ToString();
         }
+
+        /// <summary>
+        /// Lista no modelo de listagem por Gerente
+        /// </summary>
+        /// <param name="codigoGerente">Código do Gerente</param>
+        /// <returns>Retorna a string pronta</returns>
         public static string ListagemGerente(int codigoGerente)
         {
             StringBuilder retorno = new StringBuilder();
@@ -99,7 +108,7 @@ namespace Folha_de_Pagamento.Core
                     retorno.Append("Sem Departamento");
 
                 retorno.Append("\t");
-                retorno.Append(funcionario.DataNascimento);
+                retorno.Append(funcionario.DataNascimento.ToShortDateString());
                 retorno.Append("\t");
                 retorno.Append(funcionario.CPF);
                 retorno.Append("\t");
@@ -115,6 +124,12 @@ namespace Folha_de_Pagamento.Core
 
             return retorno.ToString();
         }
+
+        /// <summary>
+        /// Lista no modelo de listagem por Departamento
+        /// </summary>
+        /// <param name="codigoDepartamento">Código do Departamento</param>
+        /// <returns>Retorna a string pronta</returns>
         public static string ListagemDepartamento(int codigoDepartamento)
         {
             StringBuilder retorno = new StringBuilder();
@@ -153,7 +168,7 @@ namespace Folha_de_Pagamento.Core
                     retorno.Append("Sem Departamento");
 
                 retorno.Append("\t");
-                retorno.Append(funcionario.DataNascimento);
+                retorno.Append(funcionario.DataNascimento.ToShortDateString());
                 retorno.Append("\t");
                 retorno.Append(funcionario.CPF);
                 retorno.Append("\t");
@@ -170,6 +185,11 @@ namespace Folha_de_Pagamento.Core
             return retorno.ToString();
         }
 
+        /// <summary>
+        /// Lista no modelo de listagem por Mês de Aniversário
+        /// </summary>
+        /// <param name="mesAniversario">Mês de aniversário</param>
+        /// <returns>Retorna a string pronta</returns>
         public static string ListagemMesAniversario(int mesAniversario)
         {
             StringBuilder retorno = new StringBuilder();
@@ -209,7 +229,7 @@ namespace Folha_de_Pagamento.Core
                     retorno.Append("Sem Departamento");
 
                 retorno.Append("\t");
-                retorno.Append(funcionario.DataNascimento);
+                retorno.Append(funcionario.DataNascimento.ToShortDateString());
                 retorno.Append("\t");
                 retorno.Append(funcionario.CPF);
                 retorno.Append("\t");
@@ -225,11 +245,16 @@ namespace Folha_de_Pagamento.Core
 
             return retorno.ToString();
         }
-        public static Dictionary<string, bool> ListagemTodosGerentes()
+
+        /// <summary>
+        /// Lista no modelo de listagem de Todos os Gerentes
+        /// </summary>
+        /// <returns>Retorna uma lista de KeyValuePair onde a chave é a string e o valor é uma booleana que indica se o texto deve ser em amarelo ou preto(True: Amarelo, False: Preto)</returns>
+        public static List<KeyValuePair<string, bool>> ListagemTodosGerentes()
         {
 
             List<Funcionario> gerentes = ControleDados.GetFuncionariosTipados(ControleDados.EnumTipoFuncionario.Gerente);
-            Dictionary<string, bool> retorno = new Dictionary<string, bool>();
+            List<KeyValuePair<string, bool>> retorno = new List<KeyValuePair<string, bool>>();
 
             foreach (Funcionario gerente in gerentes)
             {
@@ -241,7 +266,7 @@ namespace Folha_de_Pagamento.Core
                 gerenteString.Append(gerente.Nome);
                 gerenteString.Append("\n");
 
-                retorno.Add(gerenteString.ToString(), true);
+                retorno.Add(new KeyValuePair<string, bool>(gerenteString.ToString(), true));
 
                 List<Funcionario> funcionarios = ControleDados.GetFuncionariosPorGerente(gerente.Codigo);
 
@@ -263,7 +288,7 @@ namespace Folha_de_Pagamento.Core
                     }
                 }
                 funcionarioString.Append("\n");
-                retorno.Add(funcionarioString.ToString(), false);
+                retorno.Add(new KeyValuePair<string, bool>(funcionarioString.ToString(), false));
             }
 
             return retorno;
