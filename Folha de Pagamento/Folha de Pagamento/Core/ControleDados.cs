@@ -29,9 +29,9 @@ namespace Folha_de_Pagamento.Core
         public enum EnumTipoFuncionario { Funcionario, Gerente }
 
         /// <summary>
-        /// Busca todos os funcionários  
+        /// Busca todos os funcionários da base de dados.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Retorna todos os funcionários</returns>
         public static List<Funcionario> GetAllFuncionarios()
         {
             List<Funcionario> listaRetorno = new List<Funcionario>();
@@ -46,6 +46,11 @@ namespace Folha_de_Pagamento.Core
             return listaRetorno;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tipo"></param>
+        /// <returns></returns>
         public static List<Funcionario> GetFuncionariosTipados(EnumTipoFuncionario tipo)
         {
             List<Funcionario> listaRetorno = new List<Funcionario>();
