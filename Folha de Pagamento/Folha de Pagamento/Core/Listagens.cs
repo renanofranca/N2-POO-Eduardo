@@ -144,7 +144,6 @@ namespace Folha_de_Pagamento.Core
             retorno.Append("\t");
             retorno.Append("Data Nasc.");
             retorno.Append("\t");
-            retorno.Append("\t");
             retorno.Append("CPF");
             retorno.Append("\t");
             retorno.Append("\t");
