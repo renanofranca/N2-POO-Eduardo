@@ -13,6 +13,9 @@ namespace Folha_de_Pagamento.Core
         private const string CAMINHOARQUIVODEPARTAMENTO = "Departamento.txt";
 
         #region TXT
+        /// <summary>
+        /// Valida se os documentos existem ou não
+        /// </summary>
         public static void ValidarExistenciaTXTs()
         {
             if (!File.Exists(CAMINHOARQUIVOFUNCIONARIO))
@@ -25,6 +28,10 @@ namespace Folha_de_Pagamento.Core
         #region Funcionarios
         public enum EnumTipoFuncionario { Funcionario, Gerente }
 
+        /// <summary>
+        /// Busca todos os funcionários  
+        /// </summary>
+        /// <returns></returns>
         public static List<Funcionario> GetAllFuncionarios()
         {
             List<Funcionario> listaRetorno = new List<Funcionario>();

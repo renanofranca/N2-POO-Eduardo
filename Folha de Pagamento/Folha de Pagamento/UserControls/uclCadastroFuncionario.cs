@@ -111,6 +111,9 @@ namespace Folha_de_Pagamento.UserControls
                         throw new Exception("Código já existente");
                 }
 
+                if(tipo == 'F' && departamento == -1)
+                    throw new Exception("Funcionario deve possuir departamento");
+                
                 return new Funcionario(codigo, nome, cpf, dataNascimento, salario, departamento, tipo);
             }
             catch(Exception e)
